@@ -5,6 +5,9 @@ type ValidateScopeFn<T> = (
 	scopes: string[]
 ) => boolean | Promise<boolean>
 
+export type OAS2_SecurityType = OAS2_BasicAuth | ApiKeyAuth
+export type OAS3_SecurityType = OAS3_BasicAuth | ApiKeyAuth | BearerAuth
+
 export type SecurityTypes = BasicAuth | ApiKeyAuth | BearerAuth
 // | OAuth2Auth | OpenIdConnectAuth
 
@@ -17,13 +20,13 @@ export type StrictSecurity<T> =
 
 // ======== BASIC AUTH
 
-export type BasicAuth = BasicAuth_OAS2 | BasicAuth_OAS3
+export type BasicAuth = OAS2_BasicAuth | OAS3_BasicAuth
 
-export interface BasicAuth_OAS2 {
+export interface OAS2_BasicAuth {
 	type: 'basic'
 }
 
-export interface BasicAuth_OAS3 {
+export interface OAS3_BasicAuth {
 	type: 'http'
 	scheme: 'basic'
 }

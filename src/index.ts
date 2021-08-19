@@ -6,6 +6,8 @@ import {
 	ApiKeyAuth,
 	BasicAuth,
 	BearerAuth,
+	OAS2_SecurityType,
+	OAS3_SecurityType,
 	SecurityTypes,
 	StrictSecurity,
 } from './types'
@@ -175,16 +177,40 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 				throw new Error(`Missing Peer Deps 'fastify-swagger'`)
 			}
 
-			// @ts-expect-error fastify-swagger declaration not applied
+			// @ts-ignore injected by fastify-swagger
 			const swagger = fastify.swagger()
 
-			if ('securityDefinitions' in swagger === false) {
-				swagger.securityDefinitions = {}
+			let schemePtr: Record<string, SecurityTypes> | undefined = undefined
+
+			if ('swagger' in swagger) {
+				if ('securityDefinitions' in swagger === false) {
+					swagger.securityDefinitions = {}
+				}
+
+				schemePtr = swagger.securityDefinitions as Record<
+					string,
+					OAS2_SecurityType
+				>
+			} else if ('openapi' in swagger) {
+				if ('components' in swagger === false) {
+					swagger.components = {}
+				}
+
+				if ('securitySchemes' in swagger === false) {
+					swagger.components!.securitySchemes = {}
+				}
+
+				schemePtr = swagger.components!.securitySchemes as Record<
+					string,
+					OAS3_SecurityType
+				>
 			}
 
-			Object.entries(securityModules).forEach(([name, security]) => {
-				swagger.securityDefinitions[name] = security
-			})
+			if (schemePtr !== undefined) {
+				Object.entries(securityModules).forEach(([name, security]) => {
+					schemePtr![name] = security.security
+				})
+			}
 		})
 
 		return next()
