@@ -11,7 +11,8 @@
     "build": "tsc",
     "build:watch": "tsc --watch",
     "lint": "eslint .",
-    "test": "tap --ts --node-arg=--require=ts-node/register tests/**/*.test.ts"
+    "test": "tap --ts --node-arg=--require=ts-node/register tests/**/*.test.ts",
+    "test:coverage": "tap --ts --node-arg=--require=ts-node/register --cov --coverage-report=lcovonly tests/**/*.test.ts"
   },
   "repository": {
     "type": "git",
