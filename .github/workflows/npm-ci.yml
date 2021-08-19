@@ -29,7 +29,7 @@ jobs:
       - run: npm run build
 
       # Run Tests
-      - run: npm test:coverage
+      - run: npm run test:coverage
 
       # Report Coverage
       - name: Coveralls GitHub Action
