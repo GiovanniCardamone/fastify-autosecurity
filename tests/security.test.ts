@@ -1,5 +1,4 @@
 import fastify from 'fastify'
-import fastifySwagger from 'fastify-swagger'
 import autosecurity from '../src'
 import tap from 'tap'
 
