@@ -18,8 +18,7 @@ export { StrictBasicAuthSecurity, StrictApiKeySecurity } from './types'
 const ERROR_LABEL = 'fastify-autosecurity'
 
 interface FastifyAutosecurityOptions {
-	dir: string
-	log?: boolean
+	dir?: string
 }
 
 interface PassedSecurity {
@@ -36,11 +35,10 @@ declare module 'fastify' {
 export default fastifyPlugin<FastifyAutosecurityOptions>(
 	async (
 		fastify: FastifyInstance,
-		options: FastifyAutosecurityOptions = { dir: './security', log: false },
+		options: FastifyAutosecurityOptions,
 		next: CallableFunction
 	) => {
-		console.log({ options })
-		const { dir, log } = options
+		const { dir } = { ...options, dir: options.dir || './security' }
 
 		let dirPath: string
 
@@ -53,10 +51,13 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 		}
 
 		if (!fs.existsSync(dirPath)) {
-			const message = `${ERROR_LABEL} dir ${dirPath} does not exists`
-			console.error(message)
+			return next(new Error(`${ERROR_LABEL} dir ${dirPath} does not exists`))
+		}
 
-			return next(new Error(message))
+		if (!fs.statSync(dirPath).isDirectory()) {
+			return next(
+				new Error(`${ERROR_LABEL} dir ${dirPath} must be a directory`)
+			)
 		}
 
 		const securities = await glob(`${dirPath}/[!_]*[!.test].{js,ts}`)
@@ -91,10 +92,9 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 
 			for (const security of setOfSecurity) {
 				if (security in securityModules === false) {
-					console.error(
+					throw new Error(
 						`[ERROR]: security ${security} is not defined in ${request.url}`
 					)
-					throw new Error(`security ${security} is not defined`)
 				}
 			}
 
@@ -107,12 +107,19 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 				)
 
 				if (securityData !== undefined) {
+					console.log({
+						solvedSecurity,
+						security,
+						module: securityModules[security],
+						securityData,
+					})
+
 					solvedSecurity[security] = await securityModules[
 						security
 					].handle.apply(
 						null,
-						// @ts-expect-error typescript is unable to determiny this at runtime
-						securityData
+						// @ts-expect-error ts cannot figure out security data to apply
+						Array.isArray(securityData) ? securityData : [securityData]
 					)
 				}
 			}
@@ -122,19 +129,11 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 				values: solvedSecurity,
 			}
 
-			console.log({ securityModules })
-
 			for (const securityGroupIndex in securityGroups) {
 				const securityGroup = securityGroups[securityGroupIndex]
 				//
 				let passed = true
 				for (const [name, scopes] of Object.entries(securityGroup)) {
-					console.log({ name, scopes, solvedSecurity })
-					console.log({ fn: securityModules[name].scopes })
-					console.log({
-						flag1: name in solvedSecurity,
-						flag2: solvedSecurity[name] !== undefined,
-					})
 					if (
 						name in solvedSecurity === false ||
 						solvedSecurity[name] === undefined ||
@@ -149,11 +148,11 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 				}
 
 				if (passed) {
-					console.log(`security ${securityGroupIndex} passed`)
 					request.security.passed.push(Number(securityGroupIndex))
-				} else {
-					console.log(`security ${securityGroupIndex} NOT passed`)
 				}
+				//  else {
+				// 	console.log(`security ${securityGroupIndex} NOT passed`)
+				// }
 			}
 
 			if (request.security.passed.length === 0) {
@@ -297,3 +296,5 @@ function getBearerAuthSecurityData(
 		? request.headers.authorization.split(' ')[1]
 		: undefined
 }
+
+export * from './types'

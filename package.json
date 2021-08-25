@@ -33,7 +33,7 @@
     "@typescript-eslint/eslint-plugin": "^4.29.0",
     "@typescript-eslint/parser": "^4.29.0",
     "eslint": "^7.32.0",
-    "fastify": "^3.20.1",
+    "eslint-config-prettier": "^8.3.0",
     "tap": "^15.0.9",
     "ts-node": "^9.1.1",
     "ts-node-dev": "^1.1.8",
@@ -41,10 +41,10 @@
   },
   "dependencies": {
     "fastify-plugin": "^3.0.0",
-    "glob": "^7.1.7",
     "glob-promise": "^4.2.0"
   },
   "peerDependencies": {
+    "fastify": "^3.20.1",
     "fastify-swagger": "^4.9.0"
   }
 }
