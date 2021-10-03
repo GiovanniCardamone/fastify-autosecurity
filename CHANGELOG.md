@@ -1,3 +1,12 @@
+## [0.1.4](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.1.3...v0.1.4) (2021-10-03)
+
+
+### Bug Fixes
+
+* added package build ([46e68c9](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/46e68c934adae9f4955d495ea7080ff8fcf8ba3d))
+
+
+
 ## [0.1.3](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.1.2...v0.1.3) (2021-10-03)
 
 
