@@ -155,11 +155,11 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 				) {
 					// 401 nessuna autorizzazione fornita
 					reply.status(401)
-					throw new Error('No Authorization provided')
+					throw new Error('Unauthorized')
 				} else {
 					// 403 nessuna autorizzazione fornita passa la validazione
 					reply.status(403)
-					throw new Error('No Authorization passed')
+					throw new Error('Forbidden')
 				}
 			}
 		})
