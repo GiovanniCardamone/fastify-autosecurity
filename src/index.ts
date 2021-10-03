@@ -107,13 +107,6 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 				)
 
 				if (securityData !== undefined) {
-					console.log({
-						solvedSecurity,
-						security,
-						module: securityModules[security],
-						securityData,
-					})
-
 					solvedSecurity[security] = await securityModules[
 						security
 					].handle.apply(
