@@ -58,6 +58,9 @@ jobs:
       # Install Dependencies
       - run: npm ci
 
+      # Build package
+      - run: npm run build
+
       # Bump version, tag commit and generate a changelog
       - name: Conventional Changelog Action
         uses: TriPSs/conventional-changelog-action@v3
