@@ -47,5 +47,6 @@
   "peerDependencies": {
     "fastify": "^3.20.2",
     "fastify-swagger": "^4.9.0"
-  }
+  },
+  "files": ["dist"]
 }
