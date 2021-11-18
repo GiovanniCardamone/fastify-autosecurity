@@ -1,3 +1,12 @@
+## [0.1.5](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.1.4...v0.1.5) (2021-10-03)
+
+
+### Bug Fixes
+
+* better unhautorized/forbidden message ([1bf5a88](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/1bf5a88a008933ebffe8efd9673b6e905a192419))
+
+
+
 ## [0.1.4](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.1.3...v0.1.4) (2021-10-03)
 
 
