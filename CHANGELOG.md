@@ -1,3 +1,12 @@
+# [0.2.0](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.1.5...v0.2.0) (2021-11-18)
+
+
+### Features
+
+* typings ([2c83ece](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/2c83ece3a2e5be6c5c54ca2aea42a2046e53761b))
+
+
+
 ## [0.1.5](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.1.4...v0.1.5) (2021-10-03)
 
 
