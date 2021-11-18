@@ -26,9 +26,20 @@ interface PassedSecurity {
 	values: Record<string, any>
 }
 
+interface RequestContext {
+	schema?: {
+		security?: Array<Record<string, string[]>>
+	}
+}
+
 declare module 'fastify' {
 	interface FastifyRequest {
 		security?: PassedSecurity
+		context: RequestContext
+	}
+
+	interface FastifySchema {
+		security?: Array<Record<string, string[]>>
 	}
 }
 
@@ -75,31 +86,46 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 			)(fastify)
 		}
 
+		fastify.addHook('onRoute', (route) => {
+			if (route?.schema?.security) {
+				for (const secutiyNames of route.schema.security.map((s) =>
+					Object.keys(s)
+				)) {
+					for (const secutiyName of secutiyNames) {
+						if (secutiyName in securityModules === false) {
+							throw new Error(
+								`[ERROR]: security "${secutiyName}""is not defined in "${
+									route.url
+								}". available securities: [${Object.keys(securityModules).join(
+									', '
+								)}]`
+							)
+						}
+					}
+				}
+			}
+		})
+
 		fastify.addHook('preValidation', async (request, reply) => {
-			// @ts-expect-error not annotated
-			if (request.context.schema?.security === undefined) {
+			if (
+				request.context.schema?.security === undefined ||
+				request.context.schema?.security.length === 0
+			) {
 				return
 			}
 
-			// @ts-expect-error not annotated
-			const securityGroups = request.context.schema?.security as Array<
-				Record<string, string[]>
-			>
+			// all security for route
+			const securityGroups = request.context.schema?.security
 
+			// set of security to call to avoid multiple
 			const setOfSecurity: Set<string> = new Set(
 				securityGroups.flatMap((s) => Object.keys(s))
 			)
 
-			for (const security of setOfSecurity) {
-				if (security in securityModules === false) {
-					throw new Error(
-						`[ERROR]: security ${security} is not defined in ${request.url}`
-					)
-				}
-			}
-
+			// set of security solved
 			const solvedSecurity: Record<string, any> = {}
 
+			//solving security
 			for (const security of setOfSecurity) {
 				const securityData = getSecurityData(
 					securityModules[security].security,
@@ -107,13 +133,20 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 				)
 
 				if (securityData !== undefined) {
-					solvedSecurity[security] = await securityModules[
-						security
-					].handle.apply(
-						null,
-						// @ts-expect-error ts cannot figure out security data to apply
-						Array.isArray(securityData) ? securityData : [securityData]
-					)
+					try {
+						solvedSecurity[security] = await securityModules[
+							security
+						].handle.apply(
+							securityModules[security],
+							// @ts-expect-error ts cannot figure out security data to apply
+							Array.isArray(securityData) ? securityData : [securityData]
+						)
+					} catch (e) {
+						reply.status(500)
+						throw e
+					}
+
+					console.log(solvedSecurity[security])
 				}
 			}
 
@@ -245,8 +278,10 @@ function getSecurityData(security: SecurityTypes, request: FastifyRequest) {
 				: security.scheme === 'bearer'
 				? getBearerAuthSecurityData(security, request)
 				: invalidSecurity(security)
+
 		case 'basic':
 			return getBasicAuthSecurityData(security, request)
+
 		case 'apiKey':
 			return getApiKeySecurityData(security, request)
 		// case 'oauth2': return getOAuth2SecurityData(security, request)
@@ -273,7 +308,7 @@ function getBasicAuthSecurityData(
 }
 
 function getApiKeySecurityData(security: ApiKeyAuth, request: FastifyRequest) {
-	const headerName = security.name
+	const headerName = security.name.toLocaleLowerCase()
 
 	return request.headers[headerName] !== undefined
 		? [request.headers[headerName]]
