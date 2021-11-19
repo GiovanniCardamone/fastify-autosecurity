@@ -1,3 +1,12 @@
+# [0.3.0](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.2.0...v0.3.0) (2021-11-19)
+
+
+### Features
+
+* added validScopes validateScope ([1caf2b7](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/1caf2b7344851786cfef50a3fb69644cca83c508))
+
+
+
 # [0.2.0](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.1.5...v0.2.0) (2021-11-18)
 
 
