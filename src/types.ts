@@ -1,9 +1,8 @@
 type SecurityAgent<T> = T | Promise<T> | undefined | Promise<undefined>
 
-type ValidateScopeFn<T> = (
-	retrived: T,
-	scopes: string[]
-) => boolean | Promise<boolean>
+type Scope<T> = (retrived: T, scopes: string[]) => boolean | Promise<boolean>
+
+type ValidateScope = (scope: string) => boolean
 
 export type OAS2_SecurityType = OAS2_BasicAuth | ApiKeyAuth
 export type OAS3_SecurityType = OAS3_BasicAuth | ApiKeyAuth | BearerAuth
@@ -34,7 +33,9 @@ export interface OAS3_BasicAuth {
 export interface StrictBasicAuthSecurity<T extends unknown> {
 	security: BasicAuth
 	handle: (username: string, password: string) => SecurityAgent<T>
-	scopes: ValidateScopeFn<T>
+	scopes: Scope<T>
+	validScopes?: string[]
+	validateScope?: ValidateScope
 }
 
 // ======== APIKEY AUTH
@@ -48,7 +49,9 @@ export interface ApiKeyAuth {
 export interface StrictApiKeySecurity<T extends unknown> {
 	security: ApiKeyAuth
 	handle: (apikey: string) => SecurityAgent<T>
-	scopes: ValidateScopeFn<T>
+	scopes: Scope<T>
+	validScopes?: string[]
+	validateScope?: ValidateScope
 }
 
 // ======== BEARER AUTH
@@ -61,5 +64,7 @@ export interface BearerAuth {
 export interface StrictBearerSecurity<T extends unknown> {
 	security: BearerAuth
 	handle: (token: string) => SecurityAgent<T>
-	scopes: ValidateScopeFn<T>
+	scopes: Scope<T>
+	validScopes?: string[]
+	validateScope?: ValidateScope
 }

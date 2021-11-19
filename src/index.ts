@@ -88,18 +88,40 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 
 		fastify.addHook('onRoute', (route) => {
 			if (route?.schema?.security) {
-				for (const secutiyNames of route.schema.security.map((s) =>
-					Object.keys(s)
-				)) {
-					for (const secutiyName of secutiyNames) {
-						if (secutiyName in securityModules === false) {
+				for (const security of route.schema.security) {
+					for (const [securityName, securityScopes] of Object.entries(
+						security
+					)) {
+						if (securityName in securityModules === false) {
 							throw new Error(
-								`[ERROR]: security "${secutiyName}""is not defined in "${
+								`[ERROR]: security "${securityName}" is not defined in "${
 									route.url
 								}". available securities: [${Object.keys(securityModules).join(
 									', '
 								)}]`
 							)
+						}
+
+						for (const securityScope of securityScopes) {
+							console.log({
+								validScope:
+									securityModules[securityName].validScopes?.includes(
+										securityScope
+									),
+								validateScope:
+									securityModules[securityName].validateScope?.(securityScope),
+							})
+							if (
+								securityModules[securityName].validScopes?.includes(
+									securityScope
+								) === false &&
+								securityModules[securityName].validateScope?.(securityScope) ===
+									false
+							) {
+								throw new Error(
+									`[ERROR]: scope "${securityScope}" for security "${securityName}" is invalid "${route.url}".`
+								)
+							}
 						}
 					}
 				}
