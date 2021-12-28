@@ -12,6 +12,7 @@ import {
 	StrictSecurity,
 } from './types'
 import type { FastifyInstance, FastifyRequest } from 'fastify'
+import { Unauthorized, Forbidden } from 'http-class'
 
 export { StrictBasicAuthSecurity, StrictApiKeySecurity } from './types'
 
@@ -103,14 +104,14 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 						}
 
 						for (const securityScope of securityScopes) {
-							console.log({
-								validScope:
-									securityModules[securityName].validScopes?.includes(
-										securityScope
-									),
-								validateScope:
-									securityModules[securityName].validateScope?.(securityScope),
-							})
+							// console.log({
+							// 	validScope:
+							// 		securityModules[securityName].validScopes?.includes(
+							// 			securityScope
+							// 		),
+							// 	validateScope:
+							// 		securityModules[securityName].validateScope?.(securityScope),
+							// })
 							if (
 								securityModules[securityName].validScopes?.includes(
 									securityScope
@@ -168,7 +169,7 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 						throw e
 					}
 
-					console.log(solvedSecurity[security])
+					// console.log(solvedSecurity[security])
 				}
 			}
 
@@ -210,11 +211,15 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 				) {
 					// 401 nessuna autorizzazione fornita
 					reply.status(401)
-					throw new Error('Unauthorized')
+					throw new Unauthorized('no auth method provided', {
+						key: 'error.jwt.missing',
+					})
 				} else {
 					// 403 nessuna autorizzazione fornita passa la validazione
 					reply.status(403)
-					throw new Error('Forbidden')
+					throw new Forbidden('no auth method with grants', {
+						key: 'error.jwt.permission',
+					})
 				}
 			}
 		})

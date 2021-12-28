@@ -43,7 +43,8 @@
   },
   "dependencies": {
     "fastify-plugin": "^3.0.0",
-    "glob-promise": "^4.2.0"
+    "glob-promise": "^4.2.0",
+    "http-class": "^0.6.0"
   },
   "peerDependencies": {
     "fastify": "^3.17.0",
