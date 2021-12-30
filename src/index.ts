@@ -20,6 +20,7 @@ const ERROR_LABEL = 'fastify-autosecurity'
 
 interface FastifyAutosecurityOptions {
 	dir?: string
+	overrides?: Record<string, StrictSecurity<any>>
 }
 
 interface PassedSecurity {
@@ -51,6 +52,7 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 		next: CallableFunction
 	) => {
 		const { dir } = { ...options, dir: options.dir || './security' }
+		const overrides = options.overrides || {}
 
 		let dirPath: string
 
@@ -81,10 +83,10 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 				.replace('.js', '')
 				.replace('.ts', '')
 
-			securityModules[securityName] = loadModule(
-				securityName,
-				security
-			)(fastify)
+			securityModules[securityName] =
+				securityName in overrides
+					? overrides[securityName]
+					: loadModule(securityName, security)(fastify)
 		}
 
 		fastify.addHook('onRoute', (route) => {
