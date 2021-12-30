@@ -159,11 +159,11 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 
 				if (securityData !== undefined) {
 					try {
+						// @ts-expect-error ts cannot figure out security data to apply
 						solvedSecurity[security] = await securityModules[
 							security
 						].handle.apply(
 							securityModules[security],
-							// @ts-expect-error ts cannot figure out security data to apply
 							Array.isArray(securityData) ? securityData : [securityData]
 						)
 					} catch (e) {
