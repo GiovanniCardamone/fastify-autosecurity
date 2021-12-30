@@ -1,3 +1,17 @@
+# [0.4.0](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.3.1...v0.4.0) (2021-12-30)
+
+
+### Bug Fixes
+
+* ts expect error wrong location ([da9d59b](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/da9d59ba07030172ab99a0bd6be3ba4a2f0f42aa))
+
+
+### Features
+
+* support overrides ([59168f0](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/59168f03223799d8398f6d274b5f095dcf17c4bb))
+
+
+
 ## [0.3.1](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.3.0...v0.3.1) (2021-12-28)
 
 
