@@ -1,3 +1,12 @@
+## [0.4.1](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.4.0...v0.4.1) (2021-12-30)
+
+
+### Bug Fixes
+
+* overrides type ([2c909d4](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/2c909d45e96972c3a2b9aa2d4d2dcf6bdf16b251))
+
+
+
 # [0.4.0](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.3.1...v0.4.0) (2021-12-30)
 
 
@@ -72,15 +81,6 @@
 
 
 ## [0.1.1](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.1.0...v0.1.1) (2021-08-19)
-
-
-
-# [0.1.0](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/b3adf1df489c789df0661bdd0b01cc2fb3a988bc...v0.1.0) (2021-08-19)
-
-
-### Features
-
-* added BasicAuth, BearerAuth, ApiKeyAuth ([b3adf1d](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/b3adf1df489c789df0661bdd0b01cc2fb3a988bc))
 
 
 
