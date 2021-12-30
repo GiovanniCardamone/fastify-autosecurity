@@ -20,7 +20,7 @@ const ERROR_LABEL = 'fastify-autosecurity'
 
 interface FastifyAutosecurityOptions {
 	dir?: string
-	overrides?: Record<string, StrictSecurity<any>>
+	overrides?: Record<string, (server: FastifyInstance) => StrictSecurity<any>>
 }
 
 interface PassedSecurity {
@@ -85,7 +85,7 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 
 			securityModules[securityName] =
 				securityName in overrides
-					? overrides[securityName]
+					? overrides[securityName](fastify)
 					: loadModule(securityName, security)(fastify)
 		}
 
