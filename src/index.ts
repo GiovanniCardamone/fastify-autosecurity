@@ -106,14 +106,6 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 						}
 
 						for (const securityScope of securityScopes) {
-							// console.log({
-							// 	validScope:
-							// 		securityModules[securityName].validScopes?.includes(
-							// 			securityScope
-							// 		),
-							// 	validateScope:
-							// 		securityModules[securityName].validateScope?.(securityScope),
-							// })
 							if (
 								securityModules[securityName].validScopes?.includes(
 									securityScope
@@ -170,8 +162,6 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 						reply.status(500)
 						throw e
 					}
-
-					// console.log(solvedSecurity[security])
 				}
 			}
 
@@ -201,9 +191,6 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 				if (passed) {
 					request.security.passed.push(Number(securityGroupIndex))
 				}
-				//  else {
-				// 	console.log(`security ${securityGroupIndex} NOT passed`)
-				// }
 			}
 
 			if (request.security.passed.length === 0) {
@@ -226,13 +213,24 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 			}
 		})
 
-		fastify.addHook('onReady', () => {
+		fastify.addHook('onReady', async () => {
 			if ('swagger' in fastify === false) {
 				throw new Error(`Missing Peer Deps 'fastify-swagger'`)
 			}
 
+			const securityDefinitions = Object.entries(securityModules).reduce(
+				(acc, [name, sec]) => ({
+					[name]: sec.security,
+				}),
+				{}
+			)
+
 			// @ts-ignore injected by fastify-swagger
-			const swagger = fastify.swagger()
+			const swagger = fastify.swagger({
+				swagger: {
+					securityDefinitions,
+				},
+			})
 
 			let schemePtr: Record<string, SecurityTypes> | undefined = undefined
 
