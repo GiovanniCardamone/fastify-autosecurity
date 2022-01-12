@@ -1,3 +1,12 @@
+# [0.5.0](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.4.1...v0.5.0) (2022-01-12)
+
+
+### Features
+
+* wip working with new swagger ([c2f52ed](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/c2f52ed49e5e28ca3f1fda794da88cf28f7326e4))
+
+
+
 ## [0.4.1](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.4.0...v0.4.1) (2021-12-30)
 
 
@@ -77,10 +86,6 @@
 
 * apply parameters security ([c318075](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/c318075673908bdd984d15850707df4ef4dc9375))
 * removed console.log ([ed9e127](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/ed9e127e806b51d4acf994379609f72696913c08))
-
-
-
-## [0.1.1](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.1.0...v0.1.1) (2021-08-19)
 
 
 
