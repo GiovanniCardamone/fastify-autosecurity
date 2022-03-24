@@ -5,7 +5,7 @@
   "main": "dist",
   "prettier": "@giovannicardamone/prettier-config",
   "eslintConfig": {
-    "extends": "@giovannicardamone/prettier-config"
+    "extends": "@giovannicardamone/eslint-config"
   },
   "scripts": {
     "build": "tsc",

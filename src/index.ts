@@ -74,7 +74,7 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 			)
 		}
 
-		const securities = await glob(`${dirPath}/[!_]*[!.test].{js,ts}`)
+		const securities = await glob(`${dirPath}/[!.|_]*[!.test|.spec].[t|j]s`)
 		const securityModules: Record<string, StrictSecurity<any>> = {}
 
 		for (const security of securities) {
