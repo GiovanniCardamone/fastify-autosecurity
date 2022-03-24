@@ -1,3 +1,13 @@
+## [0.5.1](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.5.0...v0.5.1) (2022-03-24)
+
+
+### Bug Fixes
+
+* glob path ([df0392a](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/df0392a85b3ddb574435ec2ee44529c895d973b8))
+* glob path ([ca3ad6d](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/ca3ad6d7e608c1fe735cb7c693fd535c6a6744c4))
+
+
+
 # [0.5.0](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.4.1...v0.5.0) (2022-01-12)
 
 
@@ -76,16 +86,6 @@
 
 
 ## [0.1.3](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.1.2...v0.1.3) (2021-10-03)
-
-
-
-## [0.1.2](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.1.1...v0.1.2) (2021-10-03)
-
-
-### Bug Fixes
-
-* apply parameters security ([c318075](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/c318075673908bdd984d15850707df4ef4dc9375))
-* removed console.log ([ed9e127](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/ed9e127e806b51d4acf994379609f72696913c08))
 
 
 
