@@ -1,3 +1,12 @@
+## [0.5.4](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.5.3...v0.5.4) (2022-03-25)
+
+
+### Bug Fixes
+
+* fastify-swagger peerDependency ([5c425cb](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/5c425cb678d750b31f2ec1f3bad9b08aaede082e))
+
+
+
 ## [0.5.3](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.5.2...v0.5.3) (2022-03-25)
 
 
@@ -82,15 +91,6 @@
 ### Features
 
 * typings ([2c83ece](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/2c83ece3a2e5be6c5c54ca2aea42a2046e53761b))
-
-
-
-## [0.1.5](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.1.4...v0.1.5) (2021-10-03)
-
-
-### Bug Fixes
-
-* better unhautorized/forbidden message ([1bf5a88](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/1bf5a88a008933ebffe8efd9673b6e905a192419))
 
 
 
