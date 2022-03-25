@@ -1,6 +1,6 @@
 {
   "name": "fastify-autosecurity",
-  "version": "0.5.0",
+  "version": "0.5.2",
   "description": "fastest way to map directories to URLs in fastify",
   "main": "dist",
   "prettier": "@giovannicardamone/prettier-config",
