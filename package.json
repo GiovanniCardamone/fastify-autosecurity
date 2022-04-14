@@ -12,7 +12,8 @@
     "build:watch": "tsc --watch",
     "lint": "eslint .",
     "test": "tap --ts --node-arg=--require=ts-node/register tests/**/*.test.ts",
-    "test:coverage": "tap --ts --node-arg=--require=ts-node/register --cov --coverage-report=lcovonly tests/**/*.test.ts"
+    "test:coverage": "tap --ts --node-arg=--require=ts-node/register --cov --coverage-report=lcovonly tests/**/*.test.ts",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
