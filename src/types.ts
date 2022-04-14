@@ -23,11 +23,13 @@ export type BasicAuth = OAS2_BasicAuth | OAS3_BasicAuth
 
 export interface OAS2_BasicAuth {
 	type: 'basic'
+	description?: string
 }
 
 export interface OAS3_BasicAuth {
 	type: 'http'
 	scheme: 'basic'
+	description?: string
 }
 
 export interface StrictBasicAuthSecurity<T extends unknown> {
@@ -44,6 +46,7 @@ export interface ApiKeyAuth {
 	type: 'apiKey'
 	in: 'header' | 'query'
 	name: string
+	description?: string
 }
 
 export interface StrictApiKeySecurity<T extends unknown> {
@@ -59,6 +62,7 @@ export interface StrictApiKeySecurity<T extends unknown> {
 export interface BearerAuth {
 	type: 'http'
 	scheme: 'bearer'
+	description?: string
 }
 
 export interface StrictBearerSecurity<T extends unknown> {
