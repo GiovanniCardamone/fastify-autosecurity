@@ -1,0 +1,11 @@
+{
+  "cache": false,
+  "extension": [".ts"],
+  "check-coverage": true,
+  "include": ["src/**"],
+  "statements": 85,
+  "branches": 70,
+  "functions": 60,
+  "lines": 85,
+  "reporter": ["lcovonly", "text"]
+}
