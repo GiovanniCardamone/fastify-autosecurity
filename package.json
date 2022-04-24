@@ -12,7 +12,7 @@
     "build:watch": "tsc --watch",
     "lint": "eslint .",
     "test": "jest",
-    "coverage": "jest --coverage",
+    "cover": "jest --coverage",
     "prepublishOnly": "npm run build"
   },
   "repository": {
