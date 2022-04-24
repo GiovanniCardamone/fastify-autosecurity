@@ -1,3 +1,12 @@
+## [0.6.3](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.6.2...v0.6.3) (2022-04-24)
+
+
+### Bug Fixes
+
+* cover script ([97aa9a6](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/97aa9a699c9dfb4d26c73d28f02d6a5d7574a29d))
+
+
+
 ## [0.6.2](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.6.1...v0.6.2) (2022-04-24)
 
 
@@ -67,20 +76,6 @@
 ### Bug Fixes
 
 * overrides type ([2c909d4](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/2c909d45e96972c3a2b9aa2d4d2dcf6bdf16b251))
-
-
-
-# [0.4.0](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.3.1...v0.4.0) (2021-12-30)
-
-
-### Bug Fixes
-
-* ts expect error wrong location ([da9d59b](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/da9d59ba07030172ab99a0bd6be3ba4a2f0f42aa))
-
-
-### Features
-
-* support overrides ([59168f0](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/59168f03223799d8398f6d274b5f095dcf17c4bb))
 
 
 
