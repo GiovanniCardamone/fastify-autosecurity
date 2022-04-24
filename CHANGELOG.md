@@ -1,3 +1,7 @@
+## [0.6.2](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.6.1...v0.6.2) (2022-04-24)
+
+
+
 ## [0.6.1](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.6.0...v0.6.1) (2022-04-14)
 
 
@@ -77,15 +81,6 @@
 ### Features
 
 * support overrides ([59168f0](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/59168f03223799d8398f6d274b5f095dcf17c4bb))
-
-
-
-## [0.3.1](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.3.0...v0.3.1) (2021-12-28)
-
-
-### Bug Fixes
-
-* removed console.log ([ee8004a](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/ee8004adf22ecbdbc791c528a73ba341c407e9cf))
 
 
 
