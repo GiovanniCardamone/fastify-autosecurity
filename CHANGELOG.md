@@ -1,3 +1,12 @@
+# [0.7.0](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.6.3...v0.7.0) (2022-05-08)
+
+
+### Features
+
+* base support OIDC ([419d69b](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/419d69b5321ec333bd0228fce18ed7c71098e63c))
+
+
+
 ## [0.6.3](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.6.2...v0.6.3) (2022-04-24)
 
 
@@ -67,15 +76,6 @@
 ### Features
 
 * wip working with new swagger ([c2f52ed](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/c2f52ed49e5e28ca3f1fda794da88cf28f7326e4))
-
-
-
-## [0.4.1](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.4.0...v0.4.1) (2021-12-30)
-
-
-### Bug Fixes
-
-* overrides type ([2c909d4](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/2c909d45e96972c3a2b9aa2d4d2dcf6bdf16b251))
 
 
 
