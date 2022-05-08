@@ -5,17 +5,25 @@ type Scope<T> = (retrived: T, scopes: string[]) => boolean | Promise<boolean>
 type ValidateScope = (scope: string) => boolean
 
 export type OAS2_SecurityType = OAS2_BasicAuth | ApiKeyAuth
-export type OAS3_SecurityType = OAS3_BasicAuth | ApiKeyAuth | BearerAuth
+export type OAS3_SecurityType =
+	| OAS3_BasicAuth
+	| ApiKeyAuth
+	| BearerAuth
+	| OpenIdConnectAuth
 
-export type SecurityTypes = BasicAuth | ApiKeyAuth | BearerAuth
+export type SecurityTypes =
+	| BasicAuth
+	| ApiKeyAuth
+	| BearerAuth
+	| OpenIdConnectAuth
 // | OAuth2Auth | OpenIdConnectAuth
 
 export type StrictSecurity<T> =
 	| StrictBasicAuthSecurity<T>
 	| StrictApiKeySecurity<T>
 	| StrictBearerSecurity<T>
+	| StrictOpenIdConnectSecurity<T>
 // | StrictOAuth2Security<T>
-// | StrictOpenIdConnectSecurity<T>
 
 // ======== BASIC AUTH
 
@@ -67,6 +75,22 @@ export interface BearerAuth {
 
 export interface StrictBearerSecurity<T extends unknown> {
 	security: BearerAuth
+	handle: (token: string) => SecurityAgent<T>
+	scopes: Scope<T>
+	validScopes?: string[]
+	validateScope?: ValidateScope
+}
+
+// ======== OPENID AUTH
+
+export interface OpenIdConnectAuth {
+	type: 'openIdConnect'
+	openIdConnectUrl: string
+	description?: string
+}
+
+export interface StrictOpenIdConnectSecurity<T extends unknown> {
+	security: OpenIdConnectAuth
 	handle: (token: string) => SecurityAgent<T>
 	scopes: Scope<T>
 	validScopes?: string[]

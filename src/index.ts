@@ -8,6 +8,7 @@ import {
 	BearerAuth,
 	OAS2_SecurityType,
 	OAS3_SecurityType,
+	OpenIdConnectAuth,
 	SecurityTypes,
 	StrictSecurity,
 } from './types'
@@ -152,6 +153,7 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 				if (securityData !== undefined) {
 					try {
 						// @ts-expect-error ts cannot figure out security data to apply
+						// eslint-disable-next-line
 						solvedSecurity[security] = await securityModules[
 							security
 						].handle.apply(
@@ -215,7 +217,7 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 
 		fastify.addHook('onReady', async () => {
 			if ('swagger' in fastify === false) {
-				throw new Error(`Missing Peer Deps 'fastify-swagger'`)
+				throw new Error('Missing Peer Deps "fastify-swagger"')
 			}
 
 			const securityDefinitions = Object.entries(securityModules).reduce(
@@ -225,7 +227,7 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 				{}
 			)
 
-			// @ts-ignore injected by fastify-swagger
+			// @ts-expect-error injected by fastify-swagger
 			const swagger = fastify.swagger({
 				swagger: {
 					securityDefinitions,
@@ -278,6 +280,7 @@ function loadModule(
 	name: string,
 	path: string
 ): (instance: any) => StrictSecurity<any> {
+	// eslint-disable-next-line
 	const module = require(path)
 
 	if (typeof module === 'function') {
@@ -312,7 +315,8 @@ function getSecurityData(security: SecurityTypes, request: FastifyRequest) {
 		case 'apiKey':
 			return getApiKeySecurityData(security, request)
 		// case 'oauth2': return getOAuth2SecurityData(security, request)
-		// case 'openIdConnect': return getOpenIdConnectSecurityData(security, request)
+		case 'openIdConnect':
+			return getOpenIdConnectSecurityData(security, request)
 		default:
 			invalidSecurity(security)
 	}
@@ -350,6 +354,13 @@ function getBearerAuthSecurityData(
 		request.headers.authorization.startsWith('Bearer ')
 		? request.headers.authorization.split(' ')[1]
 		: undefined
+}
+
+function getOpenIdConnectSecurityData(
+	security: OpenIdConnectAuth,
+	request: FastifyRequest
+) {
+	return request.headers.authorization
 }
 
 export * from './types'
