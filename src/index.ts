@@ -172,26 +172,31 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 				values: solvedSecurity,
 			}
 
-			for (const securityGroupIndex in securityGroups) {
-				const securityGroup = securityGroups[securityGroupIndex]
+			for (const securityGroup of securityGroups) {
 				//
 				let passed = true
+
 				for (const [name, scopes] of Object.entries(securityGroup)) {
-					if (
-						name in solvedSecurity === false ||
-						solvedSecurity[name] === undefined ||
-						(await securityModules[name].scopes(
-							solvedSecurity[name],
-							scopes
-						)) === false
-					) {
+					try {
+						if (
+							name in solvedSecurity === false ||
+							solvedSecurity[name] === undefined ||
+							(await securityModules[name].scopes(
+								solvedSecurity[name],
+								scopes
+							)) === false
+						) {
+							passed = false
+							break
+						}
+					} catch (err) {
 						passed = false
 						break
 					}
 				}
 
 				if (passed) {
-					request.security.passed.push(Number(securityGroupIndex))
+					request.security.passed.push(securityGroups.indexOf(securityGroup))
 				}
 			}
 
@@ -317,6 +322,7 @@ function getSecurityData(security: SecurityTypes, request: FastifyRequest) {
 		// case 'oauth2': return getOAuth2SecurityData(security, request)
 		case 'openIdConnect':
 			return getOpenIdConnectSecurityData(security, request)
+
 		default:
 			invalidSecurity(security)
 	}
