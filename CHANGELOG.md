@@ -1,3 +1,7 @@
+## [0.7.2](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.7.0...v0.7.2) (2022-05-08)
+
+
+
 # [0.7.0](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.6.3...v0.7.0) (2022-05-08)
 
 
@@ -67,15 +71,6 @@
 
 * glob path ([df0392a](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/df0392a85b3ddb574435ec2ee44529c895d973b8))
 * glob path ([ca3ad6d](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/ca3ad6d7e608c1fe735cb7c693fd535c6a6744c4))
-
-
-
-# [0.5.0](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.4.1...v0.5.0) (2022-01-12)
-
-
-### Features
-
-* wip working with new swagger ([c2f52ed](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/c2f52ed49e5e28ca3f1fda794da88cf28f7326e4))
 
 
 
