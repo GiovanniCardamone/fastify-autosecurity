@@ -1,3 +1,12 @@
+## [0.7.3](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.7.2...v0.7.3) (2022-05-09)
+
+
+### Bug Fixes
+
+* securityGroup iteration ([6c68b5f](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/6c68b5f563a483d765af93410259f753ea9092c6))
+
+
+
 ## [0.7.2](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.7.0...v0.7.2) (2022-05-08)
 
 
@@ -61,16 +70,6 @@
 ### Bug Fixes
 
 * fastify-swagger peerDependency ([278185f](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/278185f94e865056cc9a3c68c4c686609e975da4))
-
-
-
-## [0.5.1](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.5.0...v0.5.1) (2022-03-24)
-
-
-### Bug Fixes
-
-* glob path ([df0392a](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/df0392a85b3ddb574435ec2ee44529c895d973b8))
-* glob path ([ca3ad6d](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/ca3ad6d7e608c1fe735cb7c693fd535c6a6744c4))
 
 
 
