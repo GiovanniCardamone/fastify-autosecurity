@@ -208,13 +208,13 @@ export default fastifyPlugin<FastifyAutosecurityOptions>(
 					// 401 nessuna autorizzazione fornita
 					reply.status(401)
 					throw new Unauthorized('no auth method provided', {
-						key: 'error.jwt.missing',
+						key: 'unauthorized',
 					})
 				} else {
 					// 403 nessuna autorizzazione fornita passa la validazione
 					reply.status(403)
 					throw new Forbidden('no auth method with grants', {
-						key: 'error.jwt.permission',
+						key: 'forbidden',
 					})
 				}
 			}
