@@ -366,7 +366,9 @@ function getOpenIdConnectSecurityData(
 	security: OpenIdConnectAuth,
 	request: FastifyRequest
 ) {
-	return request.headers.authorization
+	return request.headers.authorization?.startsWith('Bearer ')
+		? request.headers.authorization
+		: undefined
 }
 
 export * from './types'
