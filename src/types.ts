@@ -25,6 +25,8 @@ export type StrictSecurity<T> =
 	| StrictOpenIdConnectSecurity<T>
 // | StrictOAuth2Security<T>
 
+type ValidScopes = string[] | Readonly<string[]>
+
 // ======== BASIC AUTH
 
 export type BasicAuth = OAS2_BasicAuth | OAS3_BasicAuth
@@ -44,7 +46,7 @@ export interface StrictBasicAuthSecurity<T extends unknown> {
 	security: BasicAuth
 	handle: (username: string, password: string) => SecurityAgent<T>
 	scopes: Scope<T>
-	validScopes?: string[]
+	validScopes?: ValidScopes
 	validateScope?: ValidateScope
 }
 
@@ -61,7 +63,7 @@ export interface StrictApiKeySecurity<T extends unknown> {
 	security: ApiKeyAuth
 	handle: (apikey: string) => SecurityAgent<T>
 	scopes: Scope<T>
-	validScopes?: string[]
+	validScopes?: ValidScopes
 	validateScope?: ValidateScope
 }
 
@@ -77,7 +79,7 @@ export interface StrictBearerSecurity<T extends unknown> {
 	security: BearerAuth
 	handle: (token: string) => SecurityAgent<T>
 	scopes: Scope<T>
-	validScopes?: string[]
+	validScopes?: ValidScopes
 	validateScope?: ValidateScope
 }
 
@@ -93,6 +95,6 @@ export interface StrictOpenIdConnectSecurity<T extends unknown> {
 	security: OpenIdConnectAuth
 	handle: (token: string) => SecurityAgent<T>
 	scopes: Scope<T>
-	validScopes?: string[]
+	validScopes?: ValidScopes
 	validateScope?: ValidateScope
 }
