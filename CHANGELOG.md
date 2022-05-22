@@ -1,3 +1,12 @@
+## [0.7.6](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.7.5...v0.7.6) (2022-05-22)
+
+
+### Bug Fixes
+
+* valid scopes type ([aeb7aa5](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/aeb7aa571d2dd96ace1871d4df1cdf95c9321403))
+
+
+
 ## [0.7.5](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.7.4...v0.7.5) (2022-05-12)
 
 
@@ -61,15 +70,6 @@
 ### Features
 
 * description security ([1839a9b](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/1839a9b8705dddc38f2cedaf2a5d5093f792df53))
-
-
-
-## [0.5.4](https://github.com/GiovanniCardamone/fastify-autosecurity/compare/v0.5.3...v0.5.4) (2022-03-25)
-
-
-### Bug Fixes
-
-* fastify-swagger peerDependency ([5c425cb](https://github.com/GiovanniCardamone/fastify-autosecurity/commit/5c425cb678d750b31f2ec1f3bad9b08aaede082e))
 
 
 
